@@ -647,15 +647,12 @@ func inlineLabelValues(lvs []string, curry []curriedLabelValue) []string {
 }
 
 func constrainLabels(desc *Desc, labels Labels) Labels {
-	constrainedValues := make(Labels, len(labels))
 	for l, v := range labels {
 		if i, ok := indexOf(l, desc.variableLabels.labelNames()); ok {
-			constrainedValues[l] = desc.variableLabels[i].Constrain(v)
-			continue
+			labels[l] = desc.variableLabels[i].Constrain(v)
 		}
-		constrainedValues[l] = v
 	}
-	return constrainedValues
+	return labels
 }
 
 func constrainLabelValues(desc *Desc, lvs []string, curry []curriedLabelValue) []string {
