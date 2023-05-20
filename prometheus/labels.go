@@ -79,6 +79,15 @@ func (cls ConstrainedLabels) labelNames() []string {
 	return names
 }
 
+func (cls ConstrainedLabels) indexOfLabelNames(target string) (int, bool) {
+	for i, label := range cls {
+		if label.Name == target {
+			return i, true
+		}
+	}
+	return len(cls), false
+}
+
 // UnconstrainedLabels represents collection of label without any constraint on
 // their value. Thus, it is simply a collection of label names.
 //
